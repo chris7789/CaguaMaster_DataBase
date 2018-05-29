@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProductosHasTiendasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductosHasTiendasLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{productosHasTiendasController.selected.precio}" title="#{bundle.EditProductosHasTiendasTitle_precio}" required="true" requiredMessage="#{bundle.EditProductosHasTiendasRequiredMessage_precio}"/>
+                    <h:outputLabel value="#{bundle.EditProductosHasTiendasLabel_productos}" for="productos" />
+                    <h:selectOneMenu id="productos" value="#{productosHasTiendasController.selected.productos}" title="#{bundle.EditProductosHasTiendasTitle_productos}" required="true" requiredMessage="#{bundle.EditProductosHasTiendasRequiredMessage_productos}">
+                        <f:selectItems value="#{productosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductosHasTiendasLabel_tiendas}" for="tiendas" />
+                    <h:selectOneMenu id="tiendas" value="#{productosHasTiendasController.selected.tiendas}" title="#{bundle.EditProductosHasTiendasTitle_tiendas}" required="true" requiredMessage="#{bundle.EditProductosHasTiendasRequiredMessage_tiendas}">
+                        <f:selectItems value="#{tiendasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productosHasTiendasController.update}" value="#{bundle.EditProductosHasTiendasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProductosHasTiendasViewLink}"/>
+                <br />
+                <h:commandLink action="#{productosHasTiendasController.prepareList}" value="#{bundle.EditProductosHasTiendasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProductosHasTiendasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
